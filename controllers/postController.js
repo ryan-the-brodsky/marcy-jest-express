@@ -1,17 +1,8 @@
 const router = require('express').Router();
 const {Post} = require('../db/models');
+const { postsIndexHandler} = require('./postControllerHandlers')
 
-router.get('/', async(req, res)=>{
-    try{
-        const posts = await Post.findAll();
-        res.json({
-            status: 200,
-            data: posts
-        })
-    }catch(err){
-        res.send(err);
-    }
-})
+router.get('/', postsIndexHandler)
 
 router.get('/:id', async(req, res)=>{
     try{
